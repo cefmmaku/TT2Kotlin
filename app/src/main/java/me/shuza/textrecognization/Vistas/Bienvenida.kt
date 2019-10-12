@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import kotlinx.android.synthetic.main.bienvenida.*
-import me.shuza.textrecognization.MainActivity
+import me.shuza.textrecognization.Imagenes.CamaraActivity
 import me.shuza.textrecognization.R
 import me.shuza.textrecognization.TTS.TTSManager
 
@@ -51,7 +51,7 @@ class Bienvenida: AppCompatActivity(), TextToSpeech.OnInitListener  {
     }
 
     private fun onClickPantalla() {
-        val intent = Intent(this,MainActivity::class.java)
+        val intent = Intent(this, CamaraActivity::class.java)
         startActivity(intent)
     }
 

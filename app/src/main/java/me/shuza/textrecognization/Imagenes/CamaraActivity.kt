@@ -1,4 +1,4 @@
-package me.shuza.textrecognization
+package me.shuza.textrecognization.Imagenes
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -15,6 +15,8 @@ import com.google.android.gms.vision.text.TextBlock
 import com.google.android.gms.vision.text.TextRecognizer
 import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.activity_main.*
+import me.shuza.textrecognization.R
+import me.shuza.textrecognization.Rutas.Data
 import org.jetbrains.anko.toast
 import kotlin.properties.Delegates
 import me.shuza.textrecognization.TTS.*
@@ -30,7 +32,7 @@ import me.shuza.textrecognization.TTS.*
  *
  **/
 
-class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
+class CamaraActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     override fun onInit(status: Int) {
         if (status == TextToSpeech.SUCCESS) {
             Log.d("hablando", "success")
@@ -43,6 +45,7 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private var mCameraSource by Delegates.notNull<CameraSource>()
     private var textRecognizer by Delegates.notNull<TextRecognizer>()
     private var mTTS : TTSManager? = null
+    private var mData : Data? = Data()
 
     private val PERMISSION_REQUEST_CAMERA = 100
 
@@ -50,11 +53,16 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initTTS()
+        initData()
         startCameraSource()
     }
 
     private fun initTTS(){
         mTTS = TTSManager(this, applicationContext)
+    }
+
+    private fun initData(){
+        mData!!.initData()
     }
 
     private fun startCameraSource() {
@@ -117,10 +125,16 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
                         stringBuilder.append("\n")
                     }
                     tv_result.text = stringBuilder.toString()
+                    mTTS!!.hablar(stringBuilder.toString())
+                    mData!!.compareData(
+                            mData!!.separaParadas(stringBuilder.toString())
+                    )
                 }
             }
         })
     }
+
+
 
     fun isCameraPermissionGranted(): Boolean {
         return ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) ==
