@@ -119,16 +119,20 @@ class CamaraActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
                 tv_result.post {
                     val stringBuilder = StringBuilder()
+                    lateinit var rutaDefinitiva: String
                     for (i in 0 until items.size()) {
                         val item = items.valueAt(i)
                         stringBuilder.append(item.value)
-                        stringBuilder.append("\n")
+                        stringBuilder.append(" ")
                     }
                     tv_result.text = stringBuilder.toString()
-                    mTTS!!.hablar(stringBuilder.toString())
-                    mData!!.compareData(
-                            mData!!.separaParadas(stringBuilder.toString())
-                    )
+                    rutaDefinitiva =
+                        mData!!.obtieneRuta(
+                                mData!!.compareData(
+                                    mData!!.separaParadas(stringBuilder.toString())
+                            )
+                        )
+                    mTTS!!.hablar(rutaDefinitiva)
                 }
             }
         })

@@ -1,6 +1,7 @@
 package me.shuza.textrecognization.Rutas
 
 import android.util.Log
+import java.util.HashMap
 
 class Data {
 
@@ -19,14 +20,14 @@ class Data {
         mListadoParadas = ArrayList()
         mListadoParadas.addAll(
                 listOf(
-                        Paradas("", tripleRuta)
-                        ,Paradas("tenayucan", tripleRuta)
+                        Paradas("tenayucan", tripleRuta)
                         ,Paradas("ceylan", tripleRuta)
                         ,Paradas("tabla", dobleRutaPoliCuautiMonte)
                         ,Paradas("honda", dobleRutaPoliCuautiMonte)
                         ,Paradas("recuerdo", tripleRuta)
                         ,Paradas("jardines", tripleRuta)
                         ,Paradas("tequex", dobleRutaPoliCuautiMonte)
+                        ,Paradas("cementos", dobleRutaPoliCuautiMonte)
                         ,Paradas("perinorte", dobleRutaPoliCuautiMonte)
                         ,Paradas("lecheria", dobleRutaPoliCuautiMonte)
                         ,Paradas("bacardi", dobleRutaPoliCuautiMonte)
@@ -63,11 +64,42 @@ class Data {
         )
     }
 
-    fun compareData(_textoExtraido: ArrayList<String>){
+    fun compareData(_textoExtraido: ArrayList<String>): ArrayList<String>{
+       var mListadoRutas: ArrayList<String> = ArrayList()
        for(i in 0 until _textoExtraido.size){
-            Log.d("Paradas", _textoExtraido[i])
+           for(j in 0 until mListadoParadas.size){
+               if(mListadoParadas[j].getNombreParada().contains(_textoExtraido[i]) || _textoExtraido[i].contains(mListadoParadas[j].getNombreParada())){
+                    mListadoRutas.addAll(mListadoParadas[j].getRutas())
+               }
+           }
        }
+        for(i in 0 until mListadoRutas.size){
+            Log.d("Rutas", mListadoRutas[i])
+        }
+        return mListadoRutas
     }
+
+    fun obtieneRuta(_listadoRutas: ArrayList<String>): String{
+        val hm = HashMap<String, Int>()
+        var maxValue = -1
+        var indice = ""
+
+        for (i in _listadoRutas) {
+            val j = hm[i]
+            hm[i] = if (j == null) 1 else j + 1
+        }
+
+        // displaying the occurrence of elements in the arraylist
+        for ((key, value) in hm) {
+            if (value > maxValue) {
+                maxValue = value
+                indice = key
+            }
+        }
+
+        return "La ruta es $indice"
+    }
+
 
     fun separaParadas(_textoExtraido: String): ArrayList<String>{
 
@@ -75,8 +107,8 @@ class Data {
         var tempParada: String? = null
         for(i in 0 until _textoExtraido.length){
             val c: Char = _textoExtraido[i]
-            if(c.equals(" ")){
-                mListadoParadasExtraidas.add(tempParada!!)
+            if(c == ' '){
+                mListadoParadasExtraidas.add(tempParada!!.toLowerCase())
                 tempParada = ""
             }
             else{
