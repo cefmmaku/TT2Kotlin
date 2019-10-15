@@ -82,7 +82,8 @@ class Data {
     fun obtieneRuta(_listadoRutas: ArrayList<String>): String{
         val hm = HashMap<String, Int>()
         var maxValue = -1
-        var indice = ""
+        var indice: String
+        var ruta = "Lo siento, no pude encontrar ninguna ruta asociada :("
 
         for (i in _listadoRutas) {
             val j = hm[i]
@@ -94,10 +95,11 @@ class Data {
             if (value > maxValue) {
                 maxValue = value
                 indice = key
+                ruta = "La ruta es $indice"
             }
         }
 
-        return "La ruta es $indice"
+        return ruta
     }
 
 
