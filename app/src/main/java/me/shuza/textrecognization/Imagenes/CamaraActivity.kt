@@ -9,6 +9,9 @@ import android.speech.tts.TextToSpeech
 import android.support.v4.app.ActivityCompat
 import android.util.Log
 import android.view.SurfaceHolder
+import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import com.google.android.gms.vision.CameraSource
 import com.google.android.gms.vision.Detector
 import com.google.android.gms.vision.text.TextBlock
@@ -46,15 +49,29 @@ class CamaraActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private var textRecognizer by Delegates.notNull<TextRecognizer>()
     private var mTTS : TTSManager? = null
     private var mData : Data? = Data()
-
+    private var mTextoOCR: String = ""
     private val PERMISSION_REQUEST_CAMERA = 100
+
+    private val clickListener = View.OnClickListener { view ->
+        when (view.id) {
+            R.id.root_view -> realizaOperaciones()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        supportActionBar!!.hide()
         setContentView(R.layout.activity_main)
         initTTS()
         initData()
         startCameraSource()
+        bindViews()
+    }
+
+
+    private fun bindViews(){
+        root_view.setOnClickListener(clickListener)
     }
 
     private fun initTTS(){
@@ -119,25 +136,27 @@ class CamaraActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
                 tv_result.post {
                     val stringBuilder = StringBuilder()
-                    lateinit var rutaDefinitiva: String
+
                     for (i in 0 until items.size()) {
                         val item = items.valueAt(i)
                         stringBuilder.append(item.value)
                         stringBuilder.append(" ")
                     }
-                    tv_result.text = stringBuilder.toString()
-                    rutaDefinitiva =
-                        mData!!.obtieneRuta(
-                                mData!!.compareData(
-                                    mData!!.separaParadas(stringBuilder.toString())
-                            )
-                        )
-                    mTTS!!.hablar(rutaDefinitiva)
+                    mTextoOCR = stringBuilder.toString()
                 }
             }
         })
     }
 
+    private fun realizaOperaciones(){
+        tv_result.text = mTextoOCR
+        val rutaDefinitiva: String = mData!!.obtieneRuta(
+                mData!!.compareData(
+                        mData!!.separaParadas(mTextoOCR)
+                )
+        )
+        mTTS!!.hablar(rutaDefinitiva)
+    }
 
 
     fun isCameraPermissionGranted(): Boolean {
