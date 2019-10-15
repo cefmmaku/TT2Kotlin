@@ -38,10 +38,8 @@ import me.shuza.textrecognization.TTS.*
 class CamaraActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     override fun onInit(status: Int) {
         if (status == TextToSpeech.SUCCESS) {
-            Log.d("hablando", "success")
             mTTS!!.hablar(resources.getString(R.string.instrucciones))
         } else {
-            Log.d("hablando", "fail")
         }
     }
 
