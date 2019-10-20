@@ -7,12 +7,13 @@ import kotlin.collections.ArrayList
 class Data {
 
     private lateinit var mListadoParadas: ArrayList<Paradas>
+    private lateinit var mListadoParadasUnidas: ArrayList<Paradas>
 
-    private val tripleRuta: ArrayList<String> = arrayListOf("Politécnico - Cuautitlan Izcalli Infonavit Norte", "Politécnico - Monte Maria", "Politécnico - Temoaya")
-    private val dobleRutaPoliCuautiMonte: ArrayList<String> = arrayListOf("Politécnico - Cuautitlan Izcalli Infonavit Norte", "Politécnico - Monte Maria")
+    private val tripleRuta: ArrayList<String> = arrayListOf("Politécnico - Cuautitlán Izcalli Infonavit Norte", "Politécnico - Monte María", "Politécnico - Temoaya")
+    private val dobleRutaPoliCuautiMonte: ArrayList<String> = arrayListOf("Politécnico - Cuautitlán Izcalli Infonavit Norte", "Politécnico - Monte María")
     private val dobleRutaPoliIxtacalaTemoaya: ArrayList<String> = arrayListOf("Politécnico - San Juan Ixtacala", "Politécnico - Temoaya")
-    private val rutaPoliCuautitlan: ArrayList<String> = arrayListOf("Politécnico - Cuautitlan Izcalli Infonavit Norte")
-    private val rutaPoliMonteMaria: ArrayList<String> = arrayListOf("Politécnico - Monte Maria")
+    private val rutaPoliCuautitlan: ArrayList<String> = arrayListOf("Politécnico - Cuautitlán Izcalli Infonavit Norte")
+    private val rutaPoliMonteMaria: ArrayList<String> = arrayListOf("Politécnico - Monte María")
     private val rutaPoliIxtacala: ArrayList<String> = arrayListOf("Politécnico - San Juan Ixtacala")
     private val rutaPoliTemoaya: ArrayList<String> = arrayListOf("Politécnico - Temoaya")
 
@@ -60,6 +61,46 @@ class Data {
                         ,Paradas("comandancia", rutaPoliIxtacala)
                         ,Paradas("santa", dobleRutaPoliIxtacalaTemoaya)
                         ,Paradas("rosa", dobleRutaPoliIxtacalaTemoaya)
+                        ,Paradas("vallejo", rutaPoliTemoaya)
+                        ,Paradas("covadonga", rutaPoliTemoaya)
+                )
+        )
+    }
+
+    fun initDataUnida(){
+        mListadoParadasUnidas = ArrayList()
+        mListadoParadasUnidas.addAll(
+                listOf(
+                        Paradas("Tenayucan", tripleRuta)
+                        ,Paradas("Ceylán", tripleRuta)
+                        ,Paradas("Tabla", dobleRutaPoliCuautiMonte)
+                        ,Paradas("Honda", dobleRutaPoliCuautiMonte)
+                        ,Paradas("Jardínes del Recuerdo", tripleRuta)
+                        ,Paradas("Tequex", dobleRutaPoliCuautiMonte)
+                        ,Paradas("Cementos", dobleRutaPoliCuautiMonte)
+                        ,Paradas("Perinorte", dobleRutaPoliCuautiMonte)
+                        ,Paradas("Lechería", dobleRutaPoliCuautiMonte)
+                        ,Paradas("bacardí", dobleRutaPoliCuautiMonte)
+                        ,Paradas("dhl", dobleRutaPoliCuautiMonte)
+                        ,Paradas("ford", dobleRutaPoliCuautiMonte)
+                        ,Paradas("koblenz", dobleRutaPoliCuautiMonte)
+                        ,Paradas("infonavit Norte", rutaPoliCuautitlan)
+                        ,Paradas("Cuautitlán Izcalli", rutaPoliCuautitlan)
+                        ,Paradas("soriana", rutaPoliCuautitlan)
+                        ,Paradas("mega", rutaPoliCuautitlan)
+                        ,Paradas("Álamos", rutaPoliCuautitlan)
+                        ,Paradas("Monte María", rutaPoliMonteMaria)
+                        ,Paradas("lago", rutaPoliMonteMaria)
+                        ,Paradas("autopista", rutaPoliMonteMaria)
+                        ,Paradas("recuerdo", rutaPoliMonteMaria)
+                        ,Paradas("isidro", rutaPoliMonteMaria)
+                        ,Paradas("Nicolás Romero", rutaPoliMonteMaria)
+                        ,Paradas("patera", rutaPoliIxtacala)
+                        ,Paradas("torres", rutaPoliIxtacala)
+                        ,Paradas("perlillar", rutaPoliIxtacala)
+                        ,Paradas("san Juan Ixtacala", rutaPoliIxtacala)
+                        ,Paradas("comandancia", rutaPoliIxtacala)
+                        ,Paradas("santa rosa", dobleRutaPoliIxtacalaTemoaya)
                         ,Paradas("vallejo", rutaPoliTemoaya)
                         ,Paradas("covadonga", rutaPoliTemoaya)
                 )
@@ -128,13 +169,14 @@ class Data {
 
     fun obtenerParadas(_ruta: String): ArrayList<String>{
         var Paradas: ArrayList<String> = ArrayList()
-        for(i in 0 until mListadoParadas.size){
-            for(j in 0 until mListadoParadas[i].getRutas().size){
-                if(mListadoParadas[i].getRutas()[j].contains(_ruta)) {
-                    Paradas.add(mListadoParadas[i].getNombreParada())
+        for(i in 0 until mListadoParadasUnidas.size){
+            for(j in 0 until mListadoParadasUnidas[i].getRutas().size){
+                if(mListadoParadasUnidas[i].getRutas()[j].contains(_ruta)) {
+                    Paradas.add(mListadoParadasUnidas[i].getNombreParada())
                 }
             }
         }
+        Paradas.add(Paradas.size -1, "y")
         return Paradas
     }
 }

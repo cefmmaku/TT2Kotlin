@@ -45,6 +45,11 @@ class Bienvenida: AppCompatActivity(), TextToSpeech.OnInitListener  {
         initTTS()
     }
 
+    override fun onPause() {
+        super.onPause()
+        mTTS!!.detener()
+    }
+
     private fun initTTS(){
         mTTS = TTSManager(this, applicationContext)
     }
@@ -59,5 +64,8 @@ class Bienvenida: AppCompatActivity(), TextToSpeech.OnInitListener  {
         startActivity(intent)
     }
 
-
+    override fun onDestroy() {
+        super.onDestroy()
+        mTTS!!.destruir()
+    }
 }

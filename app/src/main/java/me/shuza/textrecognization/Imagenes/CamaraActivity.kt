@@ -81,6 +81,16 @@ class CamaraActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         info_button.setOnClickListener(clickListener)
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        mTTS!!.destruir()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        mTTS!!.detener()
+    }
+
     private fun initTTS(){
         mTTS = TTSManager(this, applicationContext)
     }

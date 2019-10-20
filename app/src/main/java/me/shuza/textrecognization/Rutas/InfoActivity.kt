@@ -57,6 +57,16 @@ class InfoActivity: AppCompatActivity(), TextToSpeech.OnInitListener {
         mTTS!!.detener()
     }
 
+    override fun onPause() {
+        super.onPause()
+        mTTS!!.detener()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mTTS!!.destruir()
+    }
+
     private fun bindViews(){
         root_view.setOnClickListener(clickListener)
         cuauti.setOnClickListener(clickListener)
@@ -71,6 +81,6 @@ class InfoActivity: AppCompatActivity(), TextToSpeech.OnInitListener {
     }
 
     private fun initData(){
-        mData!!.initData()
+        mData!!.initDataUnida()
     }
 }
