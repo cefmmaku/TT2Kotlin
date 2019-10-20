@@ -20,11 +20,15 @@ class TTSManager(_listener: TextToSpeech.OnInitListener, _contexto: Context) {
     fun hablar(textoAHablar: String) {
         Log.d("hablando", textoAHablar + " ")
         tts!!.language = Locale.forLanguageTag("es")
-        tts!!.speak(textoAHablar, TextToSpeech.QUEUE_FLUSH, null,"")
+        tts!!.speak(textoAHablar, TextToSpeech.QUEUE_ADD, null,"")
     }
 
     fun destruir(){
         tts!!.stop()
         tts!!.shutdown()
+    }
+
+    fun detener(){
+        tts!!.stop()
     }
 }

@@ -1,7 +1,8 @@
 package me.shuza.textrecognization.Rutas
 
 import android.util.Log
-import java.util.HashMap
+import java.util.*
+import kotlin.collections.ArrayList
 
 class Data {
 
@@ -33,6 +34,7 @@ class Data {
                         ,Paradas("bacardi", dobleRutaPoliCuautiMonte)
                         ,Paradas("dhl", dobleRutaPoliCuautiMonte)
                         ,Paradas("ford", dobleRutaPoliCuautiMonte)
+                        ,Paradas("koblenz", dobleRutaPoliCuautiMonte)
                         ,Paradas("koblens", dobleRutaPoliCuautiMonte)
                         ,Paradas("infonavit", rutaPoliCuautitlan)
                         ,Paradas("norte", rutaPoliCuautitlan)
@@ -106,11 +108,14 @@ class Data {
     fun separaParadas(_textoExtraido: String): ArrayList<String>{
 
         var mListadoParadasExtraidas: ArrayList<String> = ArrayList()
-        var tempParada: String? = null
+        var tempParada: String? = ""
         for(i in 0 until _textoExtraido.length){
             val c: Char = _textoExtraido[i]
             if(c == ' '){
-                mListadoParadasExtraidas.add(tempParada!!.toLowerCase())
+                if(tempParada!!.length > 3)
+                    {
+                        mListadoParadasExtraidas.add(tempParada.toLowerCase(Locale.getDefault()))
+                    }
                 tempParada = ""
             }
             else{
@@ -119,5 +124,17 @@ class Data {
         }
 
         return mListadoParadasExtraidas
+    }
+
+    fun obtenerParadas(_ruta: String): ArrayList<String>{
+        var Paradas: ArrayList<String> = ArrayList()
+        for(i in 0 until mListadoParadas.size){
+            for(j in 0 until mListadoParadas[i].getRutas().size){
+                if(mListadoParadas[i].getRutas()[j].contains(_ruta)) {
+                    Paradas.add(mListadoParadas[i].getNombreParada())
+                }
+            }
+        }
+        return Paradas
     }
 }

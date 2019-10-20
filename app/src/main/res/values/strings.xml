@@ -8,4 +8,11 @@
     <string name="texto_titulo">Texto extraído</string>
     <string name="audio_titulo">Escuchar audio</string>
     <string name="sin_permiso">Lo siento, no dispongo de los permisos para operar la cámara. :(</string>
+    <string name="cuauti">Politécnico - Cuautitlán Izcalli Infonavit Norte</string>
+    <string name="maria">Politécnico - Monte María</string>
+    <string name="ixtacala">Politécnico - San Juan Ixtacala</string>
+    <string name="temoaya">Politécnico - Temoaya</string>
+    <string name="ruta">Elige una ruta para conocer las paradas</string>
+    <string name="la_ruta_es">Las paradas de la ruta</string>
+    <string name="son">son</string>
 </resources>

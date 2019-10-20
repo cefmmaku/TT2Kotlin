@@ -2,6 +2,7 @@ package me.shuza.textrecognization.Imagenes
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -20,6 +21,7 @@ import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.activity_main.*
 import me.shuza.textrecognization.R
 import me.shuza.textrecognization.Rutas.Data
+import me.shuza.textrecognization.Rutas.InfoActivity
 import org.jetbrains.anko.toast
 import kotlin.properties.Delegates
 import me.shuza.textrecognization.TTS.*
@@ -54,6 +56,7 @@ class CamaraActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private val clickListener = View.OnClickListener { view ->
         when (view.id) {
             R.id.root_view -> realizaOperaciones()
+            R.id.info_button -> abreInfo()
         }
     }
 
@@ -68,9 +71,14 @@ class CamaraActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         bindViews()
     }
 
+    private fun abreInfo(){
+        val intent = Intent(this, InfoActivity::class.java)
+        startActivity(intent)
+    }
 
     private fun bindViews(){
         root_view.setOnClickListener(clickListener)
+        info_button.setOnClickListener(clickListener)
     }
 
     private fun initTTS(){
