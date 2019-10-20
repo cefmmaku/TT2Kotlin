@@ -49,6 +49,7 @@ class CamaraActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private var mData : Data? = Data()
     private var mTextoOCR: String = ""
     private val PERMISSION_REQUEST_CAMERA = 100
+    private var camaraPermitida: Boolean = true
 
     private val clickListener = View.OnClickListener { view ->
         when (view.id) {
@@ -117,7 +118,8 @@ class CamaraActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
                         requestForPermission()
                     }
                 } catch (e: Exception) {
-                    toast("Error:  ${e.message}")
+                    camaraPermitida = false
+                    //toast("Error:  ${e.message}")
                 }
             }
         })
@@ -147,14 +149,19 @@ class CamaraActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     }
 
     private fun realizaOperaciones(){
-        tv_result.text = mTextoOCR
-        val rutaDefinitiva: String = mData!!.obtieneRuta(
-                mData!!.compareData(
-                        mData!!.separaParadas(mTextoOCR)
-                )
-        )
-        mTTS!!.hablar(rutaDefinitiva)
-        mTextoOCR = ""
+        if(camaraPermitida){
+            tv_result.text = mTextoOCR
+            val rutaDefinitiva: String = mData!!.obtieneRuta(
+                    mData!!.compareData(
+                            mData!!.separaParadas(mTextoOCR)
+                    )
+            )
+            mTTS!!.hablar(rutaDefinitiva)
+            mTextoOCR = ""
+        }
+        else{
+            mTTS!!.hablar(resources.getString(R.string.sin_permiso))
+        }
     }
 
 
@@ -178,6 +185,7 @@ class CamaraActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             if (isCameraPermissionGranted()) {
                 mCameraSource.start(surface_camera_preview.holder)
             } else {
+                camaraPermitida = false
                 toast("Permission need to grant")
                 finish()
             }

@@ -7,4 +7,5 @@
     <string name="foto_titulo">Fotografía analizada</string>
     <string name="texto_titulo">Texto extraído</string>
     <string name="audio_titulo">Escuchar audio</string>
+    <string name="sin_permiso">Lo siento, no dispongo de los permisos para operar la cámara. :(</string>
 </resources>
