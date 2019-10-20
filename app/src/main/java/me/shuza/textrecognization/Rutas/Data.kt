@@ -176,7 +176,7 @@ class Data {
                 }
             }
         }
-        Paradas.add(Paradas.size -1, "y")
+        Paradas.add(Paradas.size -1, "í")
         return Paradas
     }
 }
