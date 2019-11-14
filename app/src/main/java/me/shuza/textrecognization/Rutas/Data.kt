@@ -9,13 +9,13 @@ class Data {
     private lateinit var mListadoParadas: ArrayList<Paradas>
     private lateinit var mListadoParadasUnidas: ArrayList<Paradas>
 
-    private val tripleRuta: ArrayList<String> = arrayListOf("Politécnico - Cuautitlán Izcalli Infonavit Norte", "Politécnico - Monte María", "Politécnico - Temoaya")
-    private val dobleRutaPoliCuautiMonte: ArrayList<String> = arrayListOf("Politécnico - Cuautitlán Izcalli Infonavit Norte", "Politécnico - Monte María")
-    private val dobleRutaPoliIxtacalaTemoaya: ArrayList<String> = arrayListOf("Politécnico - San Juan Ixtacala", "Politécnico - Temoaya")
-    private val rutaPoliCuautitlan: ArrayList<String> = arrayListOf("Politécnico - Cuautitlán Izcalli Infonavit Norte")
-    private val rutaPoliMonteMaria: ArrayList<String> = arrayListOf("Politécnico - Monte María")
-    private val rutaPoliIxtacala: ArrayList<String> = arrayListOf("Politécnico - San Juan Ixtacala")
-    private val rutaPoliTemoaya: ArrayList<String> = arrayListOf("Politécnico - Temoaya")
+    private val tripleRuta: ArrayList<String> = arrayListOf("Politécnico a Cuautitlán Izcalli Infonavit Norte", "Politécnico a Monte María", "Politécnico a Temoaya")
+    private val dobleRutaPoliCuautiMonte: ArrayList<String> = arrayListOf("Politécnico a Cuautitlán Izcalli Infonavit Norte", "Politécnico a Monte María")
+    private val dobleRutaPoliIxtacalaTemoaya: ArrayList<String> = arrayListOf("Politécnico a San Juan Ixtacala", "Politécnico a Temoaya")
+    private val rutaPoliCuautitlan: ArrayList<String> = arrayListOf("Politécnico a Cuautitlán Izcalli Infonavit Norte")
+    private val rutaPoliMonteMaria: ArrayList<String> = arrayListOf("Politécnico a Monte María")
+    private val rutaPoliIxtacala: ArrayList<String> = arrayListOf("Politécnico a San Juan Ixtacala")
+    private val rutaPoliTemoaya: ArrayList<String> = arrayListOf("Politécnico a Temoaya")
 
 
     fun initData(){
@@ -167,8 +167,8 @@ class Data {
         return mListadoParadasExtraidas
     }
 
-    fun obtenerParadas(_ruta: String): ArrayList<String>{
-        var Paradas: ArrayList<String> = ArrayList()
+    fun obtenerParadas(_ruta: String): MutableList<String>{
+        val Paradas: MutableList<String> = ArrayList()
         for(i in 0 until mListadoParadasUnidas.size){
             for(j in 0 until mListadoParadasUnidas[i].getRutas().size){
                 if(mListadoParadasUnidas[i].getRutas()[j].contains(_ruta)) {

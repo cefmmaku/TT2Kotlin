@@ -1,6 +1,6 @@
 <resources>
     <string name="title_activity_maps">Map</string>
-    <string name="app_name">TT2</string>
+    <string name="app_name">El Camionero</string>
     <string name="bienvenido">Haga click sobre la pantalla para ir a la cámara.</string>
     <string name="instrucciones">Enfoque el camión dentro del cuadrado guía y presione la pantalla.</string>
     <string name="fallo_tomar_foto">Lo siento, no pude tomar la foto, intenta nuevamente. :(</string>
@@ -8,10 +8,10 @@
     <string name="texto_titulo">Texto extraído</string>
     <string name="audio_titulo">Escuchar audio</string>
     <string name="sin_permiso">Lo siento, no dispongo de los permisos para operar la cámara. :(</string>
-    <string name="cuauti">Politécnico - Cuautitlán Izcalli Infonavit Norte</string>
-    <string name="maria">Politécnico - Monte María</string>
-    <string name="ixtacala">Politécnico - San Juan Ixtacala</string>
-    <string name="temoaya">Politécnico - Temoaya</string>
+    <string name="cuauti">Politécnico a Cuautitlán Izcalli Infonavit Norte</string>
+    <string name="maria">Politécnico a Monte María</string>
+    <string name="ixtacala">Politécnico a San Juan Ixtacala</string>
+    <string name="temoaya">Politécnico a Temoaya</string>
     <string name="ruta">Elige una ruta para conocer las paradas</string>
     <string name="la_ruta_es">Las paradas de la ruta</string>
     <string name="son">son</string>

@@ -44,7 +44,8 @@ class InfoActivity: AppCompatActivity(), TextToSpeech.OnInitListener {
     }
 
     private fun decirRuta(_ruta: String){
-        var ParadasADecir: ArrayList<String> = mData!!.obtenerParadas(_ruta)
+        mData!!.initDataUnida()
+        val ParadasADecir: MutableList<String> = mData!!.obtenerParadas(_ruta)
         mTTS!!.hablar(resources.getString(R.string.la_ruta_es))
         mTTS!!.hablar(_ruta)
         mTTS!!.hablar(resources.getString(R.string.son))
