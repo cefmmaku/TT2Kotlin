@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.Window
 import kotlinx.android.synthetic.main.activity_info.*
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.root_view
 import me.shuza.textrecognization.R
 import me.shuza.textrecognization.TTS.TTSManager
@@ -29,6 +28,7 @@ class InfoActivity: AppCompatActivity(), TextToSpeech.OnInitListener {
             R.id.cuauti -> decirRuta(resources.getString(R.string.cuauti))
             R.id.maria -> decirRuta(resources.getString(R.string.maria))
             R.id.ixtacala -> decirRuta(resources.getString(R.string.ixtacala))
+            R.id.tlalnepantla -> decirRuta(resources.getString(R.string.tlane))
             R.id.temoaya -> decirRuta(resources.getString(R.string.temoaya))
         }
     }
@@ -75,6 +75,7 @@ class InfoActivity: AppCompatActivity(), TextToSpeech.OnInitListener {
         temoaya.setOnClickListener(clickListener)
         ixtacala.setOnClickListener(clickListener)
         pause_button.setOnClickListener(clickListener)
+        tlalnepantla.setOnClickListener(clickListener)
     }
 
     private fun initTTS(){

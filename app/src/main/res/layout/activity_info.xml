@@ -69,6 +69,16 @@
                 android:textSize="25sp" />
 
             <Button
+                android:id="@+id/tlalnepantla"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#363636"
+                android:text="@string/tlane"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="25sp" />
+
+            <Button
                 android:id="@+id/temoaya"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
